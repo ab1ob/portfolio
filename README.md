@@ -4,8 +4,8 @@
 
 I help companies cut HR costs and lift employee performance: systems that automate HR operations, and KPIs computed from operational data. *(Product UIs are Arabic — built Arabic-first for the Saudi/Gulf market.)*
 
-| [Barez Individuals](#barez-individuals--barezzcom) | [Barez Business](#barez-business--hris) | [Power BI](#hr-dashboard--power-bi) | [KPI System](#kpi-system) | [HR Excel](#hr-system--excel) |
-|---|---|---|---|---|
+| [Barez Individuals](#barez-individuals--barezzcom) | [Barez Business](#barez-business--hris) | [Power BI](#hr-dashboard--power-bi) | [KPI System](#kpi-system) | [KPI → Impact (Odoo)](#kpi--impact--odoo-poc) | [HR Excel](#hr-system--excel) |
+|---|---|---|---|---|---|
 
 ---
 
@@ -54,6 +54,20 @@ A cockpit and documented indicator guide for five departments: sales & marketing
 | Open to all | Tech | |
 |-------------|------|---|
 | [repo](https://github.com/ab1ob/barez-kpi-system) | Excel | [⬇️ Download](https://github.com/ab1ob/barez-kpi-system/archive/refs/heads/master.zip) |
+
+---
+
+## KPI → Impact — Odoo PoC
+
+<div align="center">
+<a href="https://github.com/ab1ob/kpi-impact-odoo-poc"><img src="https://raw.githubusercontent.com/ab1ob/kpi-impact-odoo-poc/master/assets/dashboard.png" alt="KPI dashboard" width="70%"/></a>
+</div>
+
+A case study in **correcting KPIs** — moving an organization's indicators from *activity* ("how busy were we") to *impact* ("what value did we create"), then proving each one by computing it **live from real system data**. I built a full Odoo CRM environment via **XML-RPC** (6 reps, 30 clients, 200 opportunities, 300 activities), and every indicator is derived from those records. Impact weighting moved 12% → 70%; all indicators within ±15% of target.
+
+| Open to all | Tech | |
+|-------------|------|---|
+| Anonymized, synthetic data — [repo](https://github.com/ab1ob/kpi-impact-odoo-poc) | Python · Odoo · XML-RPC | [View](https://github.com/ab1ob/kpi-impact-odoo-poc) |
 
 ---
 
