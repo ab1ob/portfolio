@@ -1,79 +1,89 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1F2A56,100:4A9EE8&height=180&section=header&text=Portfolio&fontSize=52&fontColor=ffffff&fontAlignY=45" width="100%"/>
 
-<div dir="rtl">
+# Portfolio — Abdulrahim Obaid
 
-# معرض الأعمال — عبدالرحيم عبيد
+I help companies cut HR costs and lift employee performance: systems that automate HR operations, and KPIs computed from operational data. *(Product UIs are Arabic — built Arabic-first for the Saudi/Gulf market.)*
 
-أساعد الشركات على خفض تكاليف الموارد البشرية ورفع أداء موظفيها: أنظمة تؤتمت عمليات القسم، ومؤشرات أداء تُحسب من بيانات التشغيل.
-
-| [بارز أفراد](#بارز-أفراد--barezzcom) | [بارز أعمال](#بارز-أعمال--نظام-الموارد-البشرية) | [لوحة Power BI](#لوحة-الموارد-البشرية--power-bi) | [نظام المؤشرات](#نظام-مؤشرات-الأداء) | [نظام HR](#نظام-hr-المتكامل--excel) |
+| [Barez Individuals](#barez-individuals--barezzcom) | [Barez Business](#barez-business--hris) | [Power BI](#hr-dashboard--power-bi) | [KPI System](#kpi-system) | [HR Excel](#hr-system--excel) |
 |---|---|---|---|---|
 
 ---
 
-## بارز أفراد — barezz.com
+## Barez Individuals — barezz.com
 
 <div align="center">
-<a href="https://barezz.com"><img src="assets/barezz-home.png" alt="منصة بارز" width="85%"/></a>
+<a href="https://barezz.com"><img src="assets/barezz-home.png" alt="Barez" width="85%"/></a>
 </div>
 
-محرك ATS بنيته من الصفر يخبر المتقدم بمدى توافقه مع الوظيفة بنفس طريقة فرز الشركات، ثم يعيد كتابة السيرة لترفعه — لا أداة ذكاء اصطناعي عامة. **نفس المحرك يشغّل وحدة التوظيف في بارز أعمال** حيث تفرز الشركات متقدميها. تشمل نظام اشتراكات ودفع كاملاً.
+An **ATS engine built from scratch** that tells an applicant how well they match a job — the same way companies screen candidates — then rewrites the CV to raise the match. **The same engine powers recruitment ranking in Barez Business**, where companies screen their own applicants. Full subscription & payment system. Supports Arabic and English.
 
-| الحالة | بنيتها | التقنيات | الكود |
-|--------|--------|----------|-------|
-| تعمل وتخدم عملاء — [barezz.com](https://barezz.com) | من الصفر: المحرك والخوارزمية والمنصة | Next.js · TypeScript · Supabase · محرك ATS مبني بالقواعد | خاص — [صفحة التفاصيل](https://github.com/ab1ob/barez-cv-platform-overview) |
+| Status | Built | Tech | Code |
+|--------|-------|------|------|
+| Live, serving customers — [barezz.com](https://barezz.com) | From scratch: engine, algorithm, platform | Next.js · TypeScript · Supabase · rules-based ATS engine | Private — [details](https://github.com/ab1ob/barez-cv-platform-overview) |
 
 ---
 
-## بارز أعمال — نظام الموارد البشرية
+## Barez Business — HRIS
 
 <div align="center">
-<img src="assets/barez-erp-login.png" alt="نظام بارز أعمال" width="85%"/>
+<img src="assets/barez-erp-login.png" alt="Barez Business" width="85%"/>
 </div>
 
-نظام HRIS متعدد الشركات بعزل كامل للبيانات، يغطي دورة حياة الموظف: رواتب متعددة العملات بمسيرات متعددة داخل السعودية وخارجها، حضور بتحقق متعدد العوامل، مسار توظيف من الإعلان إلى التعيين، إجازات وعُهد وسلف وخطابات بدورات اعتماد موثقة، وتقارير قرارية لكل مستوى إداري.
+A **multi-tenant HR system** with full data isolation, covering the employee lifecycle: multi-currency payroll across multiple pay runs (inside and outside Saudi Arabia), multi-factor attendance verification, recruitment from posting to hire, leave/custody/loans/letters with documented approval cycles, and decision reports for every management level.
 
-| الحالة | بنيته | التقنيات | الكود |
-|--------|--------|----------|-------|
-| يعمل ويخدم شركات — barez.sa (قيد الربط) | من الصفر: تصميماً وتطويراً وتشغيلاً | Python · Flask · SQLite | خاص — [صفحة التفاصيل](https://github.com/ab1ob/barez-erp-overview) |
-
----
-
-## لوحة الموارد البشرية — Power BI
-
-سبع صفحات تغطي دورة حياة الموظف: ملخص تنفيذي بنِسَب السعودة والدوران، قمع توظيف لـ21,000 طلب من التقديم إلى التعيين، رواتب وتدريب وحضور وإجازات وعُهد. النموذج: 12 جدولاً و15 علاقة و23 مقياس DAX بالعربي، بصيغة PBIP/TMDL المفتوحة القابلة للقراءة والمقارنة.
-
-| متاح للجميع | التقنيات | |
-|--------------|----------|---|
-| بيانات تجريبية لألف موظف — [الريبو](https://github.com/ab1ob/barez-hr-powerbi-dashboard) | Power BI · DAX · Power Query · TMDL | [⬇️ تحميل](https://github.com/ab1ob/barez-hr-powerbi-dashboard/archive/refs/heads/master.zip) |
+| Status | Built | Tech | Code |
+|--------|-------|------|------|
+| Live, serving companies — barez.sa (linking) | From scratch: design, engineering, operation | Python · Flask · SQLite | Private — [details](https://github.com/ab1ob/barez-erp-overview) |
 
 ---
 
-## نظام مؤشرات الأداء
+## HR Dashboard — Power BI
 
-لوحة قيادة ودليل مؤشرات موثّق لخمسة أقسام: التسويق والمبيعات، استقطاب المواهب، التعلم والتطوير، نجاح العملاء، وتطوير البرمجيات. القاعدة الصارمة فيه: المؤشر يُعرَّف من المخرجات والأثر — التوثيق والالتزام الإداري شرط جودة، لا أداء يُكافأ.
+Seven pages across the employee lifecycle: executive summary (Saudization, turnover), a full recruitment funnel over 21,000 applications, payroll, training, attendance, leave, and turnover. Model: 12 tables, 15 relationships, 23 DAX measures — in the open PBIP/TMDL format you can read and diff.
 
-| متاح للجميع | التقنيات | |
-|--------------|----------|---|
-| [الريبو](https://github.com/ab1ob/barez-kpi-system) | Excel | [⬇️ تحميل](https://github.com/ab1ob/barez-kpi-system/archive/refs/heads/master.zip) |
+| Open to all | Tech | |
+|-------------|------|---|
+| Demo data for 1,000 employees — [repo](https://github.com/ab1ob/barez-hr-powerbi-dashboard) | Power BI · DAX · Power Query · TMDL | [⬇️ Download](https://github.com/ab1ob/barez-hr-powerbi-dashboard/archive/refs/heads/master.zip) |
+
+---
+
+## KPI System
+
+A cockpit and documented indicator guide for five departments: sales & marketing, talent acquisition, learning & development, customer success, and software. Its strict rule: **a metric is defined by output and impact** — documentation and administrative compliance are a quality gate, not a scored performance.
+
+| Open to all | Tech | |
+|-------------|------|---|
+| [repo](https://github.com/ab1ob/barez-kpi-system) | Excel | [⬇️ Download](https://github.com/ab1ob/barez-kpi-system/archive/refs/heads/master.zip) |
 
 ---
 
-## نظام HR المتكامل — Excel
+## HR System — Excel
 
-نظام تشغيلي كامل في ملف واحد للمنشآت الصغيرة والمتوسطة: لوحة تحكم، سجل موظفين، حضور، مسير رواتب بحسابات تلقائية، إجازات، خصومات ومكافآت، ومؤشرات أداء لكل موظف — مع حسابات التأمينات الاجتماعية (GOSI) ومكافأة نهاية الخدمة ومتابعة انتهاء الإقامات وفق الأنظمة السعودية.
+A complete operational system in a single file for SMEs: control panel, employee records, attendance, automatic payroll, leave, deductions/bonuses, and per-employee KPIs — with **GOSI, end-of-service (EOSB), and Iqama-expiry tracking** per Saudi regulations.
 
-| متاح للجميع | التقنيات | |
-|--------------|----------|---|
-| بيانات تجريبية لثلاثين موظفاً — [الريبو](https://github.com/ab1ob/hr-excel-system) | Excel (معادلات وأتمتة) | [⬇️ تحميل](https://github.com/ab1ob/hr-excel-system/archive/refs/heads/master.zip) |
+| Open to all | Tech | |
+|-------------|------|---|
+| Demo data for 30 employees — [repo](https://github.com/ab1ob/hr-excel-system) | Excel (formulas & automation) | [⬇️ Download](https://github.com/ab1ob/hr-excel-system/archive/refs/heads/master.zip) |
 
 ---
+
+<details>
+<summary><b>🇸🇦 بالعربية</b></summary>
+
+<div dir="rtl">
+
+**بارز أفراد** — محرك ATS بنيته من الصفر يخبر المتقدم بدرجة توافقه مع الوظيفة بنفس طريقة فرز الشركات ثم يعيد كتابة سيرته لترفعه؛ ونفس المحرك يشغّل التوظيف في بارز أعمال. ([barezz.com](https://barezz.com))
+
+**بارز أعمال** — نظام HRIS متعدد الشركات: رواتب متعددة العملات، حضور بتحقق متعدد العوامل، توظيف، عهد وسلف وخطابات بدورات اعتماد. (barez.sa قيد الربط)
+
+**مشاريع مفتوحة للتحميل:** [داشبورد Power BI](https://github.com/ab1ob/barez-hr-powerbi-dashboard) (7 صفحات، 23 مقياس DAX، بيانات تجريبية لألف موظف) · [نظام المؤشرات](https://github.com/ab1ob/barez-kpi-system) (منهجية القياس من المخرجات والأثر) · [نظام HR Excel](https://github.com/ab1ob/hr-excel-system) (رواتب وحضور مع GOSI ونهاية الخدمة).
+
+</div>
+</details>
 
 <div align="center">
 
-[الصفحة الرئيسية](https://github.com/ab1ob) · [LinkedIn](https://www.linkedin.com/in/abdulrahim-obaid-273055298) · [barezz.com](https://barezz.com)
-
-</div>
+[Home](https://github.com/ab1ob) · [LinkedIn](https://www.linkedin.com/in/abdulrahim-obaid-273055298) · [barezz.com](https://barezz.com)
 
 </div>
 
