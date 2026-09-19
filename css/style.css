@@ -849,24 +849,24 @@ html[lang="ar"] .tl-card__date {
   top: 0.9rem;
   right: 0.9rem;
   height: 42px;
-  padding: 6px 9px;
-  background: #FFFFFF;
-  border-radius: 12px;
-  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.28);
   display: grid;
   place-items: center;
-  box-sizing: border-box;
-}
-[data-theme="light"] .tl-org-logo {
-  background: transparent;
-  box-shadow: none;
 }
 .tl-org-logo img {
-  height: 30px;
+  height: 34px;
   width: auto;
-  max-width: 104px;
+  max-width: 110px;
   object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
 }
+[data-theme="light"] .tl-org-logo img {
+  filter: drop-shadow(0 1px 4px rgba(27, 35, 51, 0.18));
+}
+/* Theme-specific artwork: light variant by default, dark variant
+   only under the dark theme */
+.tl-org-logo__dark { display: none; }
+[data-theme="dark"] .tl-org-logo__light { display: none; }
+[data-theme="dark"] .tl-org-logo__dark { display: block; }
 @media (max-width: 767px) {
   .tl-item--haslogo .tl-card__head { padding-right: 9rem; }
   [dir="rtl"] .tl-org-logo { right: auto; left: 0.9rem; }
@@ -942,9 +942,8 @@ html[lang="ar"] .tl-card__date {
   .tl-org-logo {
     top: 8px;
     height: 56px;
-    padding: 8px 12px;
   }
-  .tl-org-logo img { height: 40px; max-width: 150px; }
+  .tl-org-logo img { height: 48px; max-width: 160px; }
 
   /* The logo replaces the plain dot on the spine */
   .tl-item--haslogo .tl-dot { display: none; }

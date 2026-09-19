@@ -106,10 +106,13 @@ const EXPERIENCE = [
    University: official iu.edu.sa lockup, saved locally). An org with
    no entry renders without a chip — never a placeholder.
    ============================================================ */
+/* file = shown in light mode; fileDark = shown in dark mode (falls
+   back to `file` when the same artwork works on both). No plates —
+   logos render bare with a soft drop shadow. */
 const ORG_LOGOS = {
-  "Barez Company": { file: "barez-dark.png" },
+  "Barez Company": { file: "barez-dark.png", fileDark: "barez-light.png" },
   "Research and Consulting Studies Institute, Islamic University": { file: "iu-icon.svg" },
-  "Finsight": { file: "finsight.png" },
+  "Finsight": { file: "finsight.png", fileDark: "finsight-white.png" },
   // Mawrid Al-Madinah — official mark from mcd.org.sa
   "Madinah Society for Community Development": { file: "mawrid.png" },
   // Official mark from the resort's own X account (@AreesBeach)
@@ -320,7 +323,10 @@ function renderTimeline() {
       : esc(org);
     const logo = ORG_LOGOS[item.org];
     const logoHtml = logo
-      ? `<span class="tl-org-logo" aria-hidden="true"><img src="assets/icons/organizations/${esc(logo.file)}" alt="" loading="lazy"></span>`
+      ? `<span class="tl-org-logo" aria-hidden="true">
+          <img class="tl-org-logo__light" src="assets/icons/organizations/${esc(logo.file)}" alt="" loading="lazy">
+          <img class="tl-org-logo__dark" src="assets/icons/organizations/${esc(logo.fileDark || logo.file)}" alt="" loading="lazy">
+        </span>`
       : "";
 
     return `
