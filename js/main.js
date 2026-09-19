@@ -31,7 +31,7 @@ const EXPERIENCE = [
   },
   {
     role: "KPI Consultant",
-    org: "Research and Consulting Studies Institute",
+    org: "Research and Consulting Studies Institute, Islamic University",
     orgUrl: "",
     date: "Jun 2026 – Present",
     sortDate: "2026-06",
