@@ -244,6 +244,17 @@ try {
 } catch (e) {}
 
 const t = (key) => (UI[lang] && UI[lang][key]) || UI.en[key] || key;
+
+/* Shared reveal observer (assigned in init). Dynamic cards register
+   here with a per-index stagger delay; before init it's null and
+   elements just show. */
+let revealObserver = null;
+function registerReveal(el, delayMs) {
+  el.classList.add("reveal");
+  el.style.transitionDelay = `${delayMs}ms`;
+  if (revealObserver) revealObserver.observe(el);
+  else el.classList.add("is-visible");
+}
 const expAr = (org) => (lang === "ar" && EXPERIENCE_AR[org]) || {};
 const projAr = (name) => (lang === "ar" && PROJECTS_AR[name]) || {};
 
@@ -301,7 +312,7 @@ function renderTimeline() {
       : esc(org);
 
     return `
-    <li class="tl-item tl-item--${item.accent} is-entering">
+    <li class="tl-item tl-item--${item.accent}">
       <div class="tl-dot" aria-hidden="true"></div>
       <div class="tl-card">
         <button class="tl-card__head" aria-expanded="false">
@@ -332,12 +343,9 @@ function renderTimeline() {
     });
   });
 
-  // Staggered entrance
-  requestAnimationFrame(() => {
-    list.querySelectorAll(".tl-item").forEach((el, i) => {
-      setTimeout(() => el.classList.remove("is-entering"), 60 * i);
-    });
-  });
+  // Staggered scroll-in entrance (also fires immediately on re-sort,
+  // since the section is already in view)
+  list.querySelectorAll(".tl-item").forEach((el, i) => registerReveal(el, 70 * i));
 }
 
 /* ============================================================
@@ -404,6 +412,7 @@ function renderProjects() {
     });
 
     grids[p.group].appendChild(card);
+    registerReveal(card, 90 * (grids[p.group].children.length - 1));
   });
 }
 
@@ -542,8 +551,8 @@ function typeHeroCode() {
   }, { rootMargin: "-30% 0px -55% 0px" });
   sections.forEach((s) => tabObserver.observe(s));
 
-  /* ---- Scroll reveals ---- */
-  const revealObserver = new IntersectionObserver((entries) => {
+  /* ---- Scroll reveals (shared with dynamic cards via registerReveal) ---- */
+  revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("is-visible");
@@ -552,6 +561,44 @@ function typeHeroCode() {
     });
   }, { threshold: 0.12 });
   document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+  /* ---- Scroll-driven layers: reading-progress bar, ghost-title
+     parallax, timeline line drawing itself. All transform/height
+     writes batched in one rAF; skipped entirely under reduced
+     motion (CSS also hides the two progress elements). ---- */
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const progressBar = document.getElementById("scrollProgress");
+    const ghost = document.getElementById("heroGhost");
+    const tlProgress = document.getElementById("timelineProgress");
+    const timelineEl = document.getElementById("timeline");
+    let ticking = false;
+
+    const applyScrollFx = () => {
+      ticking = false;
+      const y = window.scrollY;
+      const vh = window.innerHeight;
+
+      const max = document.documentElement.scrollHeight - vh;
+      progressBar.style.width = `${max > 0 ? (y / max) * 100 : 0}%`;
+
+      // Ghost drifts up at a fraction of scroll speed and thins out
+      if (y < vh * 1.5) {
+        ghost.style.transform = `translateY(${y * -0.22}px)`;
+        ghost.style.opacity = String(Math.max(0, 0.55 - (y / vh) * 0.45));
+      }
+
+      // Timeline spine fills as the viewport moves through the section
+      const rect = timelineEl.getBoundingClientRect();
+      const total = rect.height - 12;
+      const passed = Math.min(total, Math.max(0, vh * 0.75 - rect.top));
+      tlProgress.style.height = `${passed}px`;
+    };
+
+    window.addEventListener("scroll", () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(applyScrollFx); }
+    }, { passive: true });
+    applyScrollFx();
+  }
 
   /* ---- Group kicker smooth-jump (Projects headers) ---- */
   document.querySelectorAll("[data-scroll-to]").forEach((btn) => {

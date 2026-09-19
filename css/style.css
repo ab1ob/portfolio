@@ -179,6 +179,35 @@ ul, ol { list-style: none; }
 }
 .logo__dot { color: var(--blue); }
 
+/* Reading-progress bar pinned above the nav, width driven by JS */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--blue), var(--sand));
+  z-index: 80;
+  pointer-events: none;
+}
+[dir="rtl"] .scroll-progress { left: auto; right: 0; background: linear-gradient(270deg, var(--blue), var(--sand)); }
+
+/* Shine sweep on solid buttons */
+.btn--solid { position: relative; overflow: hidden; }
+.btn--solid::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 40%;
+  left: -60%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-18deg);
+  animation: btn-shine 5.5s ease-in-out infinite;
+}
+@keyframes btn-shine {
+  0%, 55%  { left: -60%; }
+  75%, 100% { left: 130%; }
+}
+
 
 /* ============================================================
    4. NAV
@@ -298,6 +327,21 @@ ul, ol { list-style: none; }
   to   { transform: translate(-9vmax, 7vmax) scale(1.18); }
 }
 
+/* Second glow: warm accent, opposite corner, its own 26s loop so the
+   two layers never sync. */
+.hero__glow--sand {
+  width: 48vmax; height: 48vmax;
+  top: auto; bottom: -24vmax;
+  inset-inline-end: auto;
+  inset-inline-start: -16vmax;
+  background: radial-gradient(circle at center, var(--glow-sand) 0%, transparent 60%);
+  animation: glow-orbit-2 26s ease-in-out infinite alternate;
+}
+@keyframes glow-orbit-2 {
+  from { transform: translate(0, 0) scale(1.1); }
+  to   { transform: translate(8vmax, -6vmax) scale(0.92); }
+}
+
 .hero__ghost {
   position: absolute;
   top: 12%;
@@ -343,10 +387,39 @@ ul, ol { list-style: none; }
   font-size: 1.02rem;
 }
 
+/* Staggered masked entrance for the hero copy: each line rises out of
+   a clip mask with an explicit visible end state (forwards). */
+.hero__copy > * {
+  clip-path: inset(0 0 110% 0);
+  transform: translateY(26px);
+  animation: mask-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+.hero__copy .path-label  { animation-delay: 0.05s; }
+.hero__copy .hero__name  { animation-delay: 0.18s; }
+.hero__copy .hero__role  { animation-delay: 0.36s; }
+.hero__copy .hero__value { animation-delay: 0.5s; }
+@keyframes mask-rise {
+  to { clip-path: inset(-5% -5% -10% -5%); transform: none; }
+}
+
 .hero__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
 
-/* Code editor window */
+/* Code editor window: floats on an 8s loop inside a 17s drift wrapper —
+   two nested loops of different durations, so its path never repeats. */
+.editor-drift { animation: editor-drift 17s ease-in-out infinite alternate; }
+@keyframes editor-drift {
+  from { transform: translate(0, 0) rotate(0.001deg); }
+  to   { transform: translate(-12px, 8px) rotate(0.001deg); }
+}
+
+@keyframes codewin-float {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-14px); }
+}
+
 .codewin {
+  animation: codewin-float 8s ease-in-out infinite alternate;
+  position: relative;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -396,6 +469,26 @@ ul, ol { list-style: none; }
   animation: cursor-blink 1s steps(1) infinite;
 }
 @keyframes cursor-blink { 50% { opacity: 0; } }
+
+/* Periodic glass glare sweeping across the code window */
+.codewin::after {
+  content: "";
+  position: absolute;
+  top: -20%; bottom: -20%;
+  width: 34%;
+  left: -50%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.07), transparent);
+  transform: skewX(-16deg);
+  animation: codewin-glare 9s ease-in-out infinite;
+  pointer-events: none;
+}
+[data-theme="light"] .codewin::after {
+  background: linear-gradient(105deg, transparent, rgba(74, 158, 232, 0.10), transparent);
+}
+@keyframes codewin-glare {
+  0%, 62%   { left: -50%; }
+  86%, 100% { left: 135%; }
+}
 
 @media (min-width: 900px) {
   .hero__inner {
@@ -621,6 +714,8 @@ ul, ol { list-style: none; }
 /* The timeline geometry is intentionally PHYSICAL (left-anchored spine)
    and identical in English and Arabic — only card text direction flips.
    Do not convert these to logical properties. */
+.timeline-wrap { position: relative; }
+
 .timeline {
   position: relative;
   margin-top: 1.6rem;
@@ -632,6 +727,17 @@ ul, ol { list-style: none; }
   left: 8px; top: 6px; bottom: 6px;
   width: 2px;
   background: var(--border);
+}
+
+/* Accent line drawn over the spine; height driven by scroll (JS) */
+.timeline__progress {
+  position: absolute;
+  left: 8px; top: calc(1.6rem + 6px);
+  width: 2px;
+  height: 0;
+  background: linear-gradient(180deg, var(--blue), var(--sand));
+  z-index: 1;
+  pointer-events: none;
 }
 
 .tl-item { position: relative; margin-bottom: 1rem; }
@@ -649,6 +755,18 @@ ul, ol { list-style: none; }
 .tl-item--sand  .tl-dot { background: var(--sand); }
 .tl-item--slate .tl-dot { background: var(--slate); }
 .tl-item--navy  .tl-dot { background: var(--slate); }
+
+/* Soft breathing ring on the timeline dots, staggered per item */
+.tl-dot { animation: dot-pulse 3.2s ease-in-out infinite; }
+.tl-item:nth-child(2) .tl-dot { animation-delay: 0.5s; }
+.tl-item:nth-child(3) .tl-dot { animation-delay: 1s; }
+.tl-item:nth-child(4) .tl-dot { animation-delay: 1.5s; }
+.tl-item:nth-child(5) .tl-dot { animation-delay: 2s; }
+.tl-item:nth-child(6) .tl-dot { animation-delay: 2.5s; }
+@keyframes dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px var(--border); }
+  50%      { box-shadow: 0 0 0 5px var(--glow-blue); }
+}
 
 .tl-card {
   background: var(--bg-soft);
@@ -718,12 +836,10 @@ ul, ol { list-style: none; }
 
 .tl-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
-/* Reveal-in animation for sort changes */
-.tl-item.is-entering { opacity: 0; transform: translateY(10px); }
-
 @media (min-width: 768px) {
   .timeline { padding-left: 40px; }
   .timeline::before { left: 12px; }
+  .timeline__progress { left: 12px; }
   .tl-dot { left: -36px; }
 }
 
@@ -920,8 +1036,13 @@ ul, ol { list-style: none; }
     transition-duration: 0.001s !important;
   }
   .reveal { opacity: 1; transform: none; }
-  .hero__glow { animation: none; }
+  .hero__glow, .hero__glow--sand,
+  .editor-drift, .codewin,
+  .codewin::after, .btn--solid::after,
+  .tl-dot { animation: none; }
   .codewin__cursor { animation: none; }
+  .hero__copy > * { clip-path: none; transform: none; animation: none; }
+  .scroll-progress, .timeline__progress { display: none; }
 }
 
 
