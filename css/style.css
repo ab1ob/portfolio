@@ -862,6 +862,10 @@ html[lang="ar"] .tl-card__date {
 [data-theme="light"] .tl-org-logo img {
   filter: drop-shadow(0 1px 4px rgba(27, 35, 51, 0.18));
 }
+/* Compact square marks (Barez, IU, Arees) read small next to wide
+   wordmarks at the same height — they get a size class of their own */
+.tl-org-logo--lg img { height: 46px; }
+
 /* Theme-specific artwork: light variant by default, dark variant
    only under the dark theme */
 .tl-org-logo__dark { display: none; }
@@ -944,6 +948,8 @@ html[lang="ar"] .tl-card__date {
     height: 56px;
   }
   .tl-org-logo img { height: 48px; max-width: 160px; }
+  .tl-org-logo--lg { height: 78px; top: 0; }
+  .tl-org-logo--lg img { height: 78px; }
 
   /* The logo replaces the plain dot on the spine */
   .tl-item--haslogo .tl-dot { display: none; }
