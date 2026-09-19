@@ -109,8 +109,7 @@ const EXPERIENCE = [
 const ORG_LOGOS = {
   "Barez Company": { file: "barez-dark.png" },
   "Research and Consulting Studies Institute, Islamic University": { file: "iu-logo.svg" },
-  // White wordmark artwork — needs the dark chip plate to stay legible
-  "Finsight": { file: "finsight.png", darkPlate: true },
+  "Finsight": { file: "finsight.png" },
   // Mawrid Al-Madinah — official mark from mcd.org.sa
   "Madinah Society for Community Development": { file: "mawrid.png" },
   // Official mark from the resort's own X account (@AreesBeach)
@@ -321,7 +320,7 @@ function renderTimeline() {
       : esc(org);
     const logo = ORG_LOGOS[item.org];
     const logoHtml = logo
-      ? `<span class="tl-org-logo${logo.darkPlate ? " tl-org-logo--dark" : ""}" aria-hidden="true"><img src="assets/icons/organizations/${esc(logo.file)}" alt="" loading="lazy"></span>`
+      ? `<span class="tl-org-logo" aria-hidden="true"><img src="assets/icons/organizations/${esc(logo.file)}" alt="" loading="lazy"></span>`
       : "";
 
     return `

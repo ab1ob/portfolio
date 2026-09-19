@@ -836,6 +836,10 @@ html[lang="ar"] .tl-card__date {
    properties resolve wrong here — the chip and the head padding are
    positioned PHYSICALLY per language instead: away from where the
    text starts (right in English, left in Arabic). */
+/* One uniform treatment for every mark: in light mode the logo sits
+   directly on the card (all artworks are drawn for light surfaces);
+   in dark mode a single soft white plate, no border, no special
+   cases. */
 .tl-org-logo {
   pointer-events: none;
   position: absolute;
@@ -843,12 +847,16 @@ html[lang="ar"] .tl-card__date {
   right: 1.2rem;
   height: 56px;
   padding: 8px 12px;
-  background: var(--plate);
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.28);
   display: grid;
   place-items: center;
   box-sizing: border-box;
+}
+[data-theme="light"] .tl-org-logo {
+  background: transparent;
+  box-shadow: none;
 }
 .tl-org-logo img {
   height: 40px;
@@ -856,8 +864,6 @@ html[lang="ar"] .tl-card__date {
   max-width: 150px;
   object-fit: contain;
 }
-/* For marks drawn in white — the plate goes dark in both themes */
-.tl-org-logo--dark { background: #101423; border-color: #2A3355; }
 .tl-card--haslogo .tl-card__head { padding-right: 13rem; }
 [dir="rtl"] .tl-org-logo { right: auto; left: 1.2rem; }
 [dir="rtl"] .tl-card--haslogo .tl-card__head { padding-right: 1.2rem; padding-left: 13rem; }
