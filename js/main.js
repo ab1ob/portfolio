@@ -108,7 +108,7 @@ const EXPERIENCE = [
    ============================================================ */
 const ORG_LOGOS = {
   "Barez Company": { file: "barez-dark.png" },
-  "Research and Consulting Studies Institute, Islamic University": { file: "iu-logo.svg" },
+  "Research and Consulting Studies Institute, Islamic University": { file: "iu-icon.svg" },
   "Finsight": { file: "finsight.png" },
   // Mawrid Al-Madinah — official mark from mcd.org.sa
   "Madinah Society for Community Development": { file: "mawrid.png" },
