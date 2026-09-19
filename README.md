@@ -1,104 +1,32 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1F2A56,100:4A9EE8&height=180&section=header&text=Portfolio&fontSize=52&fontColor=ffffff&fontAlignY=45" width="100%"/>
+# Abdulrahim Obaid — HR Technology Portfolio
 
-# Portfolio — Abdulrahim Obaid
+A single-page portfolio site presenting HR technology work: live products, an interactive experience timeline, and open, downloadable data systems.
 
-I help companies cut HR costs and lift employee performance: systems that automate HR operations, and KPIs computed from operational data. *(Product UIs are Arabic — built Arabic-first for the Saudi/Gulf market.)*
+**Live:** https://ab1ob.github.io/portfolio/
 
-| [Barez Individuals](#barez-individuals--barezzcom) | [Barez Business](#barez-business--hris) | [Power BI](#hr-dashboard--power-bi) | [KPI System](#kpi-system) | [KPI → Impact (Odoo)](#kpi--impact--odoo-poc) | [HR Excel](#hr-system--excel) |
-|---|---|---|---|---|---|
+## About the site
 
----
+Three sections — About, Experience, and Projects — reached from a fixed top navigation bar. The experience timeline is sortable (newest/oldest) and each card expands to a description and top skills. The projects showcase splits into products running in production (barezz.com, barez.sa) and open data systems available for download, each rendered inside a browser-frame mockup with a real screenshot.
 
-## Barez Individuals — barezz.com
+## Technical highlights
 
-<div align="center">
-<a href="https://barezz.com"><img src="assets/barezz-home.png" alt="Barez" width="85%"/></a>
-</div>
+Plain HTML5, CSS3, and vanilla JavaScript — no framework, no build step.
 
-An **ATS engine built from scratch** that tells an applicant how well they match a job — the same way companies screen candidates — then rewrites the CV to raise the match. **The same engine powers recruitment ranking in Barez Business**, where companies screen their own applicants. Full subscription & payment system. Supports Arabic and English.
+- Content-driven rendering: the timeline and showcase are generated from data arrays (`EXPERIENCE`, `PROJECTS`, `SKILLS` in `js/main.js`), so content updates never touch the markup.
+- Full English/Arabic localization with RTL support through a centralized dictionary (`js/i18n.js`); English data stays the single source of truth with Arabic overrides looked up by stable keys.
+- Dark/light theme decided pre-paint by a tiny inline script (saved preference → device `prefers-color-scheme` → dark), persisted in `localStorage`.
+- `IntersectionObserver` scroll reveals and a typed hero code window, both disabled under `prefers-reduced-motion`.
+- CSS custom properties for a two-theme token system; Tajawal appended as a per-character Arabic font fallback so no font switching happens in JS.
 
-| Status | Built | Tech | Code |
-|--------|-------|------|------|
-| Live, serving customers — [barezz.com](https://barezz.com) | From scratch: engine, algorithm, platform | Next.js · TypeScript · Supabase · rules-based ATS engine | Private — [details](https://github.com/ab1ob/barez-cv-platform-overview) |
+## Run locally
 
----
+```bash
+git clone https://github.com/ab1ob/portfolio.git
+cd portfolio
+```
 
-## Barez Business — HRIS
+Open `index.html` directly, or serve the folder with any static file server.
 
-<div align="center">
-<img src="assets/barez-erp-login.png" alt="Barez Business" width="85%"/>
-</div>
+## Author
 
-A **multi-tenant HR system** with full data isolation, covering the employee lifecycle: multi-currency payroll across multiple pay runs (inside and outside Saudi Arabia), multi-factor attendance verification, recruitment from posting to hire, leave/custody/loans/letters with documented approval cycles, and decision reports for every management level.
-
-| Status | Built | Tech | Code |
-|--------|-------|------|------|
-| Live, serving companies — barez.sa (linking) | From scratch: design, engineering, operation | Python · Flask · SQLite | Private — [details](https://github.com/ab1ob/barez-erp-overview) |
-
----
-
-## HR Dashboard — Power BI
-
-Seven pages across the employee lifecycle: executive summary (Saudization, turnover), a full recruitment funnel over 21,000 applications, payroll, training, attendance, leave, and turnover. Model: 12 tables, 15 relationships, 23 DAX measures — in the open PBIP/TMDL format you can read and diff.
-
-| Open to all | Tech | |
-|-------------|------|---|
-| Demo data for 1,000 employees — [repo](https://github.com/ab1ob/barez-hr-powerbi-dashboard) | Power BI · DAX · Power Query · TMDL | [⬇️ Download](https://github.com/ab1ob/barez-hr-powerbi-dashboard/archive/refs/heads/master.zip) |
-
----
-
-## KPI System
-
-A cockpit and documented indicator guide for five departments: sales & marketing, talent acquisition, learning & development, customer success, and software. Its strict rule: **a metric is defined by output and impact** — documentation and administrative compliance are a quality gate, not a scored performance.
-
-| Open to all | Tech | |
-|-------------|------|---|
-| [repo](https://github.com/ab1ob/barez-kpi-system) | Excel | [⬇️ Download](https://github.com/ab1ob/barez-kpi-system/archive/refs/heads/master.zip) |
-
----
-
-## KPI → Impact — Odoo PoC
-
-<div align="center">
-<a href="https://github.com/ab1ob/kpi-impact-odoo-poc"><img src="https://raw.githubusercontent.com/ab1ob/kpi-impact-odoo-poc/master/assets/dashboard.png" alt="KPI dashboard" width="70%"/></a>
-</div>
-
-A case study in **correcting KPIs** — moving an organization's indicators from *activity* ("how busy were we") to *impact* ("what value did we create"), then proving each one by computing it **live from real system data**. I built a full Odoo CRM environment via **XML-RPC** (6 reps, 30 clients, 200 opportunities, 300 activities), and every indicator is derived from those records. Impact weighting moved 12% → 70%; all indicators within ±15% of target.
-
-| Open to all | Tech | |
-|-------------|------|---|
-| Anonymized, synthetic data — [repo](https://github.com/ab1ob/kpi-impact-odoo-poc) | Python · Odoo · XML-RPC | [View](https://github.com/ab1ob/kpi-impact-odoo-poc) |
-
----
-
-## HR System — Excel
-
-A complete operational system in a single file for SMEs: control panel, employee records, attendance, automatic payroll, leave, deductions/bonuses, and per-employee KPIs — with **GOSI, end-of-service (EOSB), and Iqama-expiry tracking** per Saudi regulations.
-
-| Open to all | Tech | |
-|-------------|------|---|
-| Demo data for 30 employees — [repo](https://github.com/ab1ob/hr-excel-system) | Excel (formulas & automation) | [⬇️ Download](https://github.com/ab1ob/hr-excel-system/archive/refs/heads/master.zip) |
-
----
-
-<details>
-<summary><b>🇸🇦 بالعربية</b></summary>
-
-<div dir="rtl">
-
-**بارز أفراد** — محرك ATS بنيته من الصفر يخبر المتقدم بدرجة توافقه مع الوظيفة بنفس طريقة فرز الشركات ثم يعيد كتابة سيرته لترفعه؛ ونفس المحرك يشغّل التوظيف في بارز أعمال. ([barezz.com](https://barezz.com))
-
-**بارز أعمال** — نظام HRIS متعدد الشركات: رواتب متعددة العملات، حضور بتحقق متعدد العوامل، توظيف، عهد وسلف وخطابات بدورات اعتماد. (barez.sa قيد الربط)
-
-**مشاريع مفتوحة للتحميل:** [داشبورد Power BI](https://github.com/ab1ob/barez-hr-powerbi-dashboard) (7 صفحات، 23 مقياس DAX، بيانات تجريبية لألف موظف) · [نظام المؤشرات](https://github.com/ab1ob/barez-kpi-system) (منهجية القياس من المخرجات والأثر) · [نظام HR Excel](https://github.com/ab1ob/hr-excel-system) (رواتب وحضور مع GOSI ونهاية الخدمة).
-
-</div>
-</details>
-
-<div align="center">
-
-[Home](https://github.com/ab1ob) · [LinkedIn](https://www.linkedin.com/in/abdulrahim-obaid-273055298) · [barezz.com](https://barezz.com)
-
-</div>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:4A9EE8,100:1F2A56&height=90&section=footer" width="100%"/>
+Abdulrahim Obaid — [LinkedIn](https://www.linkedin.com/in/abdulrahim-obaid-273055298) · [barezz.com](https://barezz.com)

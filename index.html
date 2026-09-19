@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Abdulrahim Obaid — HR Technology. Systems that automate HR operations and KPIs computed from operational data." id="metaDescription">
+  <title>Abdulrahim Obaid — HR Technology</title>
+
+  <!-- Sets data-theme before the stylesheet paints so there is no flash of
+       the wrong theme. Priority: saved preference -> device
+       prefers-color-scheme -> dark. Must stay synchronous and inline;
+       js/main.js's theme init only reads what this already set. -->
+  <script>
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem("theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        try {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        } catch (e) {
+          theme = "dark";
+        }
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Figtree:wght@400;500;600&family=Space+Mono:wght@400;700&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="top">
+    <a class="nav__brand" href="#top" aria-label="Abdulrahim Obaid — home" data-i18n-aria-label="nav.brandAria">
+      <span class="logo">AO<span class="logo__dot">.</span></span>
+    </a>
+
+    <div class="nav__right">
+      <button class="theme-toggle lang-toggle" id="langToggle" aria-label="Switch to Arabic" data-i18n-aria-label="nav.langToArabic" title="Switch language" data-i18n-title="nav.langToArabic">
+        <svg class="lang-toggle__icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M4.5 7.5C6.7 8.8 9.2 9.5 12 9.5s5.3-.7 7.5-2M4.5 16.5C6.7 15.2 9.2 14.5 12 14.5s5.3.7 7.5 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode" aria-pressed="false">
+        <svg class="theme-toggle__icon icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" fill="currentColor"/>
+          <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/>
+            <line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/>
+            <line x1="5.3" y1="5.3" x2="7" y2="7"/><line x1="17" y1="17" x2="18.7" y2="18.7"/>
+            <line x1="18.7" y1="5.3" x2="17" y2="7"/><line x1="7" y1="17" x2="5.3" y2="18.7"/>
+          </g>
+        </svg>
+        <svg class="theme-toggle__icon icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M20 14.2A8 8 0 0 1 9.8 4 8 8 0 1 0 20 14.2Z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navTabs">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav aria-label="Main" data-i18n-aria-label="nav.mainAria">
+      <ul class="nav__tabs" id="navTabs">
+        <li><a class="tab" href="#about" data-accent="blue" data-i18n="nav.about">About</a></li>
+        <li><a class="tab" href="#experience" data-accent="sand" data-i18n="nav.experience">Experience</a></li>
+        <li><a class="tab" href="#projects" data-accent="slate" data-i18n="nav.projects">Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO / COVER ============ -->
+    <section class="hero" aria-label="Introduction" data-i18n-aria-label="hero.introAria">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <h2 class="hero__ghost" aria-hidden="true" data-i18n="hero.ghost">Portfolio</h2>
+
+      <div class="hero__inner">
+        <div class="hero__copy reveal">
+          <p class="path-label" data-i18n="hero.pathLabel">~/abdulrahim-obaid</p>
+          <h1 class="hero__name" data-i18n="hero.name">Abdulrahim Obaid</h1>
+          <p class="hero__role" data-i18n="hero.role">HR Technology</p>
+          <p class="hero__value" data-i18n="hero.value">I help companies cut HR costs and lift employee performance — with systems that automate HR operations and KPIs computed from operational data.</p>
+        </div>
+
+        <div class="hero__editor reveal" aria-hidden="true">
+          <div class="codewin">
+            <div class="codewin__bar">
+              <span class="codewin__dot codewin__dot--r"></span>
+              <span class="codewin__dot codewin__dot--y"></span>
+              <span class="codewin__dot codewin__dot--g"></span>
+              <span class="codewin__file">abdulrahim_obaid.js</span>
+            </div>
+            <pre class="codewin__body"><code id="typedCode"></code><span class="codewin__cursor"></span></pre>
+          </div>
+        </div>
+
+        <div class="hero__cta reveal">
+          <a class="btn btn--solid" href="https://www.linkedin.com/in/abdulrahim-obaid-273055298" target="_blank" rel="noopener" data-i18n="hero.contact">Contact Me</a>
+          <a class="btn btn--ghost" href="#projects" data-i18n="hero.projects">Projects</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT — blue ============ -->
+    <section class="section reveal" id="about" data-accent="blue" aria-labelledby="about-h">
+      <div class="foldertabs" aria-hidden="true">
+        <span class="foldertabs__tab foldertabs__tab--main" data-i18n="about.tabLabel">about</span>
+        <span class="foldertabs__tab foldertabs__tab--ghost"></span>
+        <span class="foldertabs__tab foldertabs__tab--ghost2"></span>
+      </div>
+      <div class="panel">
+        <p class="path-label" data-i18n="about.pathLabel">about/</p>
+        <h2 class="section__title" id="about-h" data-i18n="about.title">About Me</h2>
+        <div class="about__grid">
+          <div class="contentbox about__bio-box">
+            <p class="about__bio" data-i18n="about.bio">
+              I'm Abdulrahim Obaid, an HR professional of 7+ years who builds the technology
+              side of HR: systems that automate payroll, attendance, recruitment, and custody,
+              and performance indicators computed straight from operational data. Today I lead
+              HR technology projects at Barez in Madinah while completing a BSc in Data Science.
+            </p>
+            <div class="about__whyme">
+              <span class="about__whyme-label" data-i18n="about.whyMeLabel">Why me?</span>
+              <p class="about__whyme-text" data-i18n="about.whyMeText">
+                Because I know HR from the inside and the engineering that automates it.
+                Years of running HR departments, paired with data science, mean the systems
+                I build answer the problems HR teams actually have.
+              </p>
+            </div>
+          </div>
+          <div class="about__facts">
+            <div class="filecard">
+              <span class="filecard__label" data-i18n="about.experienceLabel">Experience</span>
+              <span class="filecard__value" data-i18n="about.experienceValue">7+ years in HR and organizational development</span>
+            </div>
+            <div class="filecard">
+              <span class="filecard__label" data-i18n="about.educationLabel">Education</span>
+              <span class="filecard__value" data-i18n="about.educationValue">BSc Data Science — Islamic University (in progress)</span>
+            </div>
+            <div class="filecard">
+              <span class="filecard__label" data-i18n="about.certsLabel">Certifications</span>
+              <span class="filecard__value" data-i18n="about.certsValue">Odoo 19 Functional · CPC · 60 SHRM PDCs · TOT</span>
+            </div>
+            <div class="filecard">
+              <span class="filecard__label" data-i18n="about.languagesLabel">Languages</span>
+              <span class="filecard__value">
+                <span class="pill pill--blue" data-i18n="about.langArabic">Arabic</span>
+                <span class="pill pill--sand" data-i18n="about.langEnglish">English</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__skills" id="skills">
+          <h3 class="about__skills-h" data-i18n="about.skillsHeading">Skills</h3>
+          <div class="skills-mini">
+            <div class="skills-mini__group">
+              <span class="skills-mini__label" data-i18n="about.technicalLabel">Technical</span>
+              <!-- Rendered from SKILLS.technical in js/main.js (renderSkillIcons) -->
+              <div class="skills-mini__pills" id="technicalSkills"></div>
+            </div>
+            <div class="skills-mini__group">
+              <span class="skills-mini__label" data-i18n="about.platformsLabel">Saudi HR Platforms</span>
+              <!-- Rendered from SKILLS.platforms in js/main.js (renderSkillIcons) -->
+              <div class="skills-mini__pills" id="platformsSkills"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE — sand ============ -->
+    <section class="section reveal" id="experience" data-accent="sand" aria-labelledby="exp-h">
+      <div class="foldertabs" aria-hidden="true">
+        <span class="foldertabs__tab foldertabs__tab--main" data-i18n="experience.tabLabel">experience</span>
+        <span class="foldertabs__tab foldertabs__tab--ghost"></span>
+        <span class="foldertabs__tab foldertabs__tab--ghost2"></span>
+      </div>
+      <div class="panel">
+        <div class="exp-head">
+          <div class="exp-head__title">
+            <p class="path-label" data-i18n="experience.pathLabel">experience/</p>
+            <h2 class="section__title" id="exp-h" data-i18n="experience.title">Experience</h2>
+          </div>
+          <div class="exp-sort" role="group" aria-label="Sort experience by date" data-i18n-aria-label="experience.sortAria">
+            <button type="button" class="exp-sort__btn is-active" data-sort="desc" aria-pressed="true" data-i18n="experience.sortNewest">Newest first</button>
+            <button type="button" class="exp-sort__btn" data-sort="asc" aria-pressed="false" data-i18n="experience.sortOldest">Oldest first</button>
+          </div>
+        </div>
+        <p class="section__lede" data-i18n="experience.lede">A timeline of my roles. Click a card to reveal the details and top skills.</p>
+
+        <!-- Timeline renders from the EXPERIENCE data array in js/main.js.
+             To add or edit a role, edit that array. Arabic overrides live in
+             js/i18n.js (EXPERIENCE_AR), keyed by org. -->
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS — slate ============ -->
+    <section class="section reveal" id="projects" data-accent="slate" aria-labelledby="proj-h">
+      <div class="foldertabs" aria-hidden="true">
+        <span class="foldertabs__tab foldertabs__tab--main" data-i18n="projects.tabLabel">projects</span>
+        <span class="foldertabs__tab foldertabs__tab--ghost"></span>
+        <span class="foldertabs__tab foldertabs__tab--ghost2"></span>
+      </div>
+      <div class="panel">
+        <p class="path-label" data-i18n="projects.pathLabel">projects/</p>
+        <h2 class="section__title" id="proj-h" data-i18n="projects.title">Projects</h2>
+        <p class="section__lede" data-i18n="projects.lede">Live products and open, downloadable data systems. Click a card for details.</p>
+
+        <!-- Projects render from the PROJECTS data in js/main.js. Each entry:
+             name, group ('live'|'open'), badge, image, accent, description,
+             role, tags[], link, linkLabel. Arabic overrides live in
+             js/i18n.js (PROJECTS_AR), keyed by name. -->
+        <div class="showcase">
+          <section class="showcase__group" aria-labelledby="live-h">
+            <h3 class="showcase__group-h" id="live-h"><button type="button" class="showcase__group-kicker" data-scroll-to="live-h" aria-label="Jump to live products" data-i18n-aria-label="projects.liveJumpAria" data-i18n="projects.liveKicker">Live</button> <span class="showcase__group-title" data-i18n="projects.liveTitle">Products in Production</span></h3>
+            <div class="showcase__grid showcase__grid--live" id="liveGrid"></div>
+          </section>
+
+          <section class="showcase__group" aria-labelledby="open-h">
+            <h3 class="showcase__group-h" id="open-h"><button type="button" class="showcase__group-kicker" data-scroll-to="open-h" aria-label="Jump to open data systems" data-i18n-aria-label="projects.openJumpAria" data-i18n="projects.openKicker">Open</button> <span class="showcase__group-title" data-i18n="projects.openTitle">Data Systems — Download &amp; Explore</span></h3>
+            <div class="showcase__grid showcase__grid--open" id="openGrid"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="contact">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="logo footer__logo">AO<span class="logo__dot">.</span></span>
+        <span class="footer__tag" data-i18n="footer.tag">HR Technology</span>
+      </div>
+      <div class="footer__icons">
+        <a class="iconbtn" href="https://github.com/ab1ob" target="_blank" rel="noopener" aria-label="GitHub profile" data-i18n-aria-label="footer.githubAria" data-tip="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" fill="currentColor"/></svg>
+        </a>
+        <a class="iconbtn" href="https://www.linkedin.com/in/abdulrahim-obaid-273055298" target="_blank" rel="noopener" aria-label="LinkedIn profile" data-i18n-aria-label="footer.linkedinAria" data-tip="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9h4v12H3Zm6 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H9Z" fill="currentColor"/></svg>
+        </a>
+        <a class="iconbtn" href="https://barezz.com" target="_blank" rel="noopener" aria-label="barezz.com" data-tip="barezz.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm7.93 9h-3.44a15.7 15.7 0 0 0-1.2-5.4A8.03 8.03 0 0 1 19.93 11ZM12 4.04c.83 1.2 1.9 3.5 2.16 6.96H9.84C10.1 7.54 11.17 5.24 12 4.04ZM8.71 5.6A15.7 15.7 0 0 0 7.51 11H4.07A8.03 8.03 0 0 1 8.71 5.6ZM4.07 13h3.44c.14 2.08.56 3.9 1.2 5.4A8.03 8.03 0 0 1 4.07 13ZM12 19.96c-.83-1.2-1.9-3.5-2.16-6.96h4.32c-.26 3.46-1.33 5.76-2.16 6.96Zm3.29-1.56c.64-1.5 1.06-3.32 1.2-5.4h3.44a8.03 8.03 0 0 1-4.64 5.4Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+    <p class="footer__copy" data-i18n="footer.copy">© 2026 Abdulrahim Obaid. All rights reserved.</p>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
