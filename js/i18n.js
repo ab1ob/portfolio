@@ -90,6 +90,7 @@ const UI = {
     "footer.tag": "HR Technology",
     "footer.githubAria": "GitHub profile",
     "footer.linkedinAria": "LinkedIn profile",
+    "footer.emailAria": "Send me an email",
     "footer.copy": "© 2026 Abdulrahim Obaid. All rights reserved.",
   },
 
@@ -162,6 +163,7 @@ const UI = {
     "footer.tag": "تقنية الموارد البشرية",
     "footer.githubAria": "حساب GitHub",
     "footer.linkedinAria": "حساب LinkedIn",
+    "footer.emailAria": "أرسل لي رسالة بريد",
     "footer.copy": "2026 © عبدالرحيم عبيد. جميع الحقوق محفوظة.",
   },
 };
