@@ -29,26 +29,17 @@ const EXPERIENCE = [
     role: "HR Technology Projects Manager",
     org: "Barez Company",
     orgUrl: "https://barez.sa",
-    date: "Jun 2026 – Present",
+    date: "Feb 2026 – Present",
     sortDate: "2026-06",
     location: "Madinah",
     accent: "blue",
     tags: ["HR Technology", "Project Management"],
-    desc: "Appointed full-time to lead Barez Prime's HR technology agenda after delivering the company's core HR system as a consultant. Leading 4 active technology projects in parallel: two HR systems and two ERP implementations. Built KPI models across 6 departments, with the sales KPI framework contributing to a 200% lift in sales performance, and shortened delivery cycles through structured project management and workflow automation.",
+    desc: "Started as a consultant engaged to design and deliver Barez Prime's core HR infrastructure from the ground up: led a multidisciplinary team across HR, software development, and operations to build a system covering all 7 HR pillars, fully aligned with Saudi Labor Law, delivered fully operational within 4 months. That delivery led to a full-time appointment leading the HR technology agenda: 4 active projects in parallel (two HR systems, two ERP implementations), KPI models across 6 departments with the sales framework contributing to a 200% lift in sales performance, and shorter delivery cycles through structured project management and workflow automation.",
+    roleSteps: [
+      "HR Systems Consultant (Contract) · Feb 2026 – May 2026",
+      "HR Technology Projects Manager (Full-time) · Jun 2026 – Present",
+    ],
     skills: ["HR Systems Delivery", "KPI Frameworks", "Workflow Automation"],
-  },
-  {
-    role: "HR Systems Consultant",
-    org: "Barez Company",
-    arKey: "Barez Company (Consultant)",
-    orgUrl: "https://barez.sa",
-    date: "Feb 2026 – May 2026",
-    sortDate: "2026-02",
-    location: "Madinah",
-    accent: "blue",
-    tags: ["Contract", "HR Systems"],
-    desc: "Engaged to design and deliver Barez Prime's core HR infrastructure from the ground up: led a multidisciplinary team across HR, software development, and operations to build a system covering all 7 HR pillars, fully aligned with Saudi Labor Law, and handed it over fully operational within the 4-month engagement — which led to the full-time appointment as HR Technology Projects Manager.",
-    skills: ["HR System Design", "Team Leadership", "Full Project Ownership"],
   },
   {
     role: "KPI Consultant",
@@ -332,6 +323,7 @@ function renderTimeline() {
     const tags = ar.tags || item.tags;
     const skills = ar.skills || item.skills;
     const location = ar.location || item.location;
+    const steps = ar.roleSteps || item.roleSteps;
     const orgHtml = item.orgUrl
       ? `<a href="${esc(item.orgUrl)}" target="_blank" rel="noopener">${esc(org)}</a>`
       : esc(org);
@@ -358,6 +350,10 @@ function renderTimeline() {
         <div class="tl-card__body">
           <div class="tl-card__body-inner">
             <p class="tl-card__desc">${esc(desc)}</p>
+            ${steps ? `<div class="tl-steps">
+              <span class="tl-steps__label">${esc(t("experience.trackLabel"))}</span>
+              <ul>${steps.map((st) => `<li>${esc(st)}</li>`).join("")}</ul>
+            </div>` : ""}
             <div class="tl-skills">${skills.map((sk) =>
               `<span class="pill pill--${item.accent}">${esc(sk)}</span>`).join("")}</div>
           </div>

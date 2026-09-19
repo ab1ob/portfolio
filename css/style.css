@@ -883,7 +883,7 @@ html[lang="ar"] .tl-card__date {
   overflow: hidden;
   transition: max-height 0.4s ease;
 }
-.tl-card.is-open .tl-card__body { max-height: 30rem; }
+.tl-card.is-open .tl-card__body { max-height: 44rem; }
 .tl-card__body-inner {
   padding: 0 1.2rem 1.2rem;
   border-top: 1px dashed var(--border);
