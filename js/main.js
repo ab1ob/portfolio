@@ -36,8 +36,8 @@ const EXPERIENCE = [
     tags: ["HR Technology", "Project Management"],
     desc: "Started as a consultant engaged to design and deliver Barez Prime's core HR infrastructure from the ground up: led a multidisciplinary team across HR, software development, and operations to build a system covering all 7 HR pillars, fully aligned with Saudi Labor Law, delivered fully operational within 4 months. That delivery led to a full-time appointment leading the HR technology agenda: 4 active projects in parallel (two HR systems, two ERP implementations), KPI models across 6 departments with the sales framework contributing to a 200% lift in sales performance, and shorter delivery cycles through structured project management and workflow automation.",
     roleSteps: [
-      "HR Systems Consultant (Contract) · Feb 2026 – May 2026",
       "HR Technology Projects Manager (Full-time) · Jun 2026 – Present",
+      "HR Systems Consultant (Contract) · Feb 2026 – May 2026",
     ],
     skills: ["HR Systems Delivery", "KPI Frameworks", "Workflow Automation"],
   },
