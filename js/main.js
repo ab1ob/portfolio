@@ -384,7 +384,19 @@ function renderProjects() {
           <span class="browser__dot"></span><span class="browser__dot"></span><span class="browser__dot"></span>
           <span class="browser__url">${esc(p.url)}</span>
         </div>
-        <div class="browser__screen"><img src="${esc(p.image)}" alt="" loading="lazy"></div>
+        <div class="browser__screen">
+          <img src="${esc(p.image)}" alt="" loading="lazy">
+          <!-- Cover slides toward the reading direction on hover/focus/
+               open, revealing the real screenshot underneath. -->
+          <div class="proj-cover proj-cover--${p.accent}">
+            <span class="proj-cover__ghost">${esc(name.charAt(0))}</span>
+            <span class="proj-cover__name">${esc(name)}</span>
+            <span class="proj-cover__type">${esc(type)}</span>
+            <span class="proj-cover__cue">
+              <svg viewBox="0 0 24 24" width="15" height="15"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </div>
       </div>
       <button class="proj-card__head" aria-expanded="false">
         <span class="proj-card__toprow">
