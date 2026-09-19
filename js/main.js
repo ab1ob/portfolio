@@ -324,10 +324,10 @@ function renderTimeline() {
       : "";
 
     return `
-    <li class="tl-item tl-item--${item.accent}">
+    <li class="tl-item tl-item--${item.accent}${logo ? " tl-item--haslogo" : ""}">
       <div class="tl-dot" aria-hidden="true"></div>
-      <div class="tl-card${logo ? " tl-card--haslogo" : ""}">
-        ${logoHtml}
+      ${logoHtml}
+      <div class="tl-card">
         <button class="tl-card__head" aria-expanded="false">
           <span class="tl-card__role">${esc(role)}</span>
           <span class="tl-card__org">${orgHtml}</span>

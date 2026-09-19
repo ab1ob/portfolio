@@ -836,17 +836,20 @@ html[lang="ar"] .tl-card__date {
    properties resolve wrong here — the chip and the head padding are
    positioned PHYSICALLY per language instead: away from where the
    text starts (right in English, left in Arabic). */
-/* One uniform treatment for every mark: in light mode the logo sits
-   directly on the card (all artworks are drawn for light surfaces);
-   in dark mode a single soft white plate, no border, no special
-   cases. */
+/* Organization logo node. One uniform treatment for every mark: in
+   light mode the logo shows bare (all artworks are drawn for light
+   surfaces); in dark mode a single soft white plate, no border, no
+   special cases.
+   Mobile: the logo sits in the card's far corner. Desktop (centered
+   alternating timeline below): it IS the node on the spine. */
 .tl-org-logo {
   pointer-events: none;
   position: absolute;
-  top: 1rem;
-  right: 1.2rem;
-  height: 56px;
-  padding: 8px 12px;
+  z-index: 2;
+  top: 0.9rem;
+  right: 0.9rem;
+  height: 42px;
+  padding: 6px 9px;
   background: #FFFFFF;
   border-radius: 12px;
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.28);
@@ -859,19 +862,15 @@ html[lang="ar"] .tl-card__date {
   box-shadow: none;
 }
 .tl-org-logo img {
-  height: 40px;
+  height: 30px;
   width: auto;
-  max-width: 150px;
+  max-width: 104px;
   object-fit: contain;
 }
-.tl-card--haslogo .tl-card__head { padding-right: 13rem; }
-[dir="rtl"] .tl-org-logo { right: auto; left: 1.2rem; }
-[dir="rtl"] .tl-card--haslogo .tl-card__head { padding-right: 1.2rem; padding-left: 13rem; }
-@media (max-width: 640px) {
-  .tl-org-logo { height: 42px; top: 0.9rem; padding: 6px 9px; }
-  .tl-org-logo img { height: 30px; max-width: 104px; }
-  .tl-card--haslogo .tl-card__head { padding-right: 9rem; }
-  [dir="rtl"] .tl-card--haslogo .tl-card__head { padding-right: 1.2rem; padding-left: 9rem; }
+@media (max-width: 767px) {
+  .tl-item--haslogo .tl-card__head { padding-right: 9rem; }
+  [dir="rtl"] .tl-org-logo { right: auto; left: 0.9rem; }
+  [dir="rtl"] .tl-item--haslogo .tl-card__head { padding-right: 1.2rem; padding-left: 9rem; }
 }
 .tl-card__tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.45rem; }
 
@@ -914,11 +913,41 @@ html[lang="ar"] .tl-card__date {
 
 .tl-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
+/* Desktop: Leen-style centered alternating timeline. The spine sits
+   in the middle, cards alternate left/right by DOM order (so sorting
+   keeps the zigzag), and the node — logo or dot — sits ON the spine.
+   Geometry is physical and identical in both languages. */
 @media (min-width: 768px) {
-  .timeline { padding-left: 40px; }
-  .timeline::before { left: 12px; }
-  .timeline__progress { left: 12px; }
-  .tl-dot { left: -36px; }
+  .timeline { padding-left: 0; }
+  .timeline::before { left: 50%; margin-left: -1px; }
+  .timeline__progress { left: 50%; margin-left: -1px; }
+
+  .tl-item { width: calc(50% - 92px); margin-bottom: 1.4rem; }
+  .tl-item:nth-child(odd)  { margin-right: auto; }
+  .tl-item:nth-child(even) { margin-left: auto; }
+
+  .tl-item:nth-child(odd) .tl-dot,
+  .tl-item:nth-child(odd) .tl-org-logo {
+    left: calc(100% + 92px);
+    right: auto;
+    transform: translateX(-50%);
+  }
+  .tl-item:nth-child(even) .tl-dot,
+  .tl-item:nth-child(even) .tl-org-logo {
+    left: -92px;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .tl-org-logo {
+    top: 8px;
+    height: 56px;
+    padding: 8px 12px;
+  }
+  .tl-org-logo img { height: 40px; max-width: 150px; }
+
+  /* The logo replaces the plain dot on the spine */
+  .tl-item--haslogo .tl-dot { display: none; }
 }
 
 
