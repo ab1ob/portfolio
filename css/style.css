@@ -872,9 +872,20 @@ html[lang="ar"] .tl-card__date {
 [data-theme="dark"] .tl-org-logo__light { display: none; }
 [data-theme="dark"] .tl-org-logo__dark { display: block; }
 @media (max-width: 767px) {
-  .tl-item--haslogo .tl-card__head { padding-right: 9rem; }
+  /* Compact corner logo; only the role/org lines make room for it —
+     date and tags keep the full card width so text stops wrapping
+     word-per-line. */
+  .tl-org-logo { height: auto; }
+  .tl-org-logo img {
+    height: auto;
+    max-height: 40px;
+    max-width: 80px;
+  }
+  .tl-item--haslogo .tl-card__role,
+  .tl-item--haslogo .tl-card__org { padding-right: 6.2rem; }
   [dir="rtl"] .tl-org-logo { right: auto; left: 0.9rem; }
-  [dir="rtl"] .tl-item--haslogo .tl-card__head { padding-right: 1.2rem; padding-left: 9rem; }
+  [dir="rtl"] .tl-item--haslogo .tl-card__role,
+  [dir="rtl"] .tl-item--haslogo .tl-card__org { padding-right: 0; padding-left: 6.2rem; }
 }
 .tl-card__tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.45rem; }
 
