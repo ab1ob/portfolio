@@ -48,9 +48,10 @@ const EXPERIENCE = [
     date: "Jun 2026 – Present",
     sortDate: "2026-06",
     location: "Madinah",
+    empType: "External consulting engagement",
     accent: "slate",
     tags: ["Consulting", "Performance Indicators"],
-    desc: "Correcting 200+ performance indicators across 6 departments covering 40+ employees, and reflecting them in automated dashboards inside Odoo.",
+    desc: "An external consulting engagement alongside my full-time role: correcting 200+ performance indicators across 6 departments covering 40+ employees, and reflecting them in automated dashboards inside Odoo.",
     skills: ["KPI Correction", "Odoo Dashboards", "Automation"],
   },
   {
@@ -323,6 +324,7 @@ function renderTimeline() {
     const tags = ar.tags || item.tags;
     const skills = ar.skills || item.skills;
     const location = ar.location || item.location;
+    const empType = ar.empType || item.empType;
     const steps = ar.roleSteps || item.roleSteps;
     const orgHtml = item.orgUrl
       ? `<a href="${esc(item.orgUrl)}" target="_blank" rel="noopener">${esc(org)}</a>`
@@ -343,7 +345,7 @@ function renderTimeline() {
         <button class="tl-card__head" aria-expanded="false">
           <span class="tl-card__role">${esc(role)}</span>
           <span class="tl-card__org">${orgHtml}</span>
-          <span class="tl-card__date">${esc(date)}${location ? ` · ${esc(location)}` : ""}</span>
+          <span class="tl-card__date">${esc(date)}${location ? ` · ${esc(location)}` : ""}${empType ? ` · ${esc(empType)}` : ""}</span>
           <span class="tl-card__tags">${tags.map((tg) =>
             `<span class="pill pill--${item.accent}">${esc(tg)}</span>`).join("")}</span>
         </button>
