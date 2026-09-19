@@ -34,8 +34,21 @@ const EXPERIENCE = [
     location: "Madinah",
     accent: "blue",
     tags: ["HR Technology", "Project Management"],
-    desc: "Leading 4 active technology projects in parallel: two HR systems and two ERP implementations. Built the sales KPI framework that contributed to a 200% lift in sales performance, and shortened delivery cycles through structured project management and workflow automation.",
+    desc: "Appointed full-time to lead Barez Prime's HR technology agenda after delivering the company's core HR system as a consultant. Leading 4 active technology projects in parallel: two HR systems and two ERP implementations. Built KPI models across 6 departments, with the sales KPI framework contributing to a 200% lift in sales performance, and shortened delivery cycles through structured project management and workflow automation.",
     skills: ["HR Systems Delivery", "KPI Frameworks", "Workflow Automation"],
+  },
+  {
+    role: "HR Systems Consultant",
+    org: "Barez Company",
+    arKey: "Barez Company (Consultant)",
+    orgUrl: "https://barez.sa",
+    date: "Feb 2026 – May 2026",
+    sortDate: "2026-02",
+    location: "Madinah",
+    accent: "blue",
+    tags: ["Contract", "HR Systems"],
+    desc: "Engaged to design and deliver Barez Prime's core HR infrastructure from the ground up: led a multidisciplinary team across HR, software development, and operations to build a system covering all 7 HR pillars, fully aligned with Saudi Labor Law, and handed it over fully operational within the 4-month engagement — which led to the full-time appointment as HR Technology Projects Manager.",
+    skills: ["HR System Design", "Team Leadership", "Full Project Ownership"],
   },
   {
     role: "KPI Consultant",
@@ -50,19 +63,19 @@ const EXPERIENCE = [
     skills: ["KPI Correction", "Odoo Dashboards", "Automation"],
   },
   {
-    role: "Institutional Development Manager",
+    role: "Senior HR Specialist",
     org: "Finsight",
     orgUrl: "",
-    date: "Jan 2022 – May 2026",
+    date: "Jan 2022 – Feb 2026",
     sortDate: "2022-01",
     location: "Madinah",
     accent: "sand",
-    tags: ["HR", "Organizational Development"],
-    desc: "Established the HR department from zero: 30+ employment contracts aligned with Saudi labor policies, and a CO-OP training unit mentoring 10+ interns on HRIS platforms and labor-law compliance. Developed 30+ performance KPIs from data analysis, sustained sub-5% turnover, and directed talent acquisition for 20+ specialized roles.",
-    skills: ["HR Department Buildout", "People Analytics", "Talent Acquisition"],
+    tags: ["HR", "HR Systems"],
+    desc: "Leading the design and implementation of a fully integrated HR system, built on the 7 HR pillars and connected to technology for automation and measurable outcomes. Built the HR department from scratch: 30+ employment contracts, policies, and full Saudi labor-law compliance. Designed 30+ KPIs integrated into Odoo HRMS for real-time performance visibility, reduced turnover below 5%, led talent acquisition for 20+ specialized roles, founded a CO-OP unit mentoring 10+ interns, and conducted 50+ performance counseling sessions.",
+    skills: ["HR Systems Architecture", "People Analytics", "Talent Acquisition"],
   },
   {
-    role: "Institutional Development Specialist",
+    role: "HR Specialist",
     org: "Arees Resort",
     orgUrl: "",
     date: "Jun 2019 – Dec 2021",
@@ -86,7 +99,7 @@ const EXPERIENCE = [
     skills: ["Production Management", "Team Building", "Career Guidance"],
   },
   {
-    role: "Competency Development Specialist",
+    role: "HR Coordinator",
     org: "Al-Rayyan Hotel Group",
     orgUrl: "",
     date: "Oct 2018 – Oct 2019",
@@ -265,7 +278,8 @@ function registerReveal(el, delayMs) {
   if (revealObserver) revealObserver.observe(el);
   else el.classList.add("is-visible");
 }
-const expAr = (org) => (lang === "ar" && EXPERIENCE_AR[org]) || {};
+/* Looked up by arKey when two entries share the same org */
+const expAr = (key) => (lang === "ar" && EXPERIENCE_AR[key]) || {};
 const projAr = (name) => (lang === "ar" && PROJECTS_AR[name]) || {};
 
 function applyI18n() {
@@ -310,7 +324,7 @@ function renderTimeline() {
   );
 
   list.innerHTML = items.map((item) => {
-    const ar = expAr(item.org);
+    const ar = expAr(item.arKey || item.org);
     const role = ar.role || item.role;
     const org = ar.org || item.org;
     const date = ar.date || item.date;
