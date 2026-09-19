@@ -498,6 +498,28 @@ ul, ol { list-style: none; }
   .hero__cta { grid-column: 1 / -1; }
 }
 
+/* Scroll cue: breathing chevron at the hero's bottom edge, faded out
+   by JS as scrolling starts */
+.hero__scrollcue {
+  position: absolute;
+  bottom: 1.3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.hero__scrollcue:hover { color: var(--blue); border-color: var(--blue); }
+.hero__scrollcue svg { animation: cue-bounce 2.2s ease-in-out infinite; }
+@keyframes cue-bounce {
+  0%, 100% { transform: translateY(-2px); }
+  50%      { transform: translateY(3px); }
+}
+
 
 /* ============================================================
    6. SECTIONS SHARED
@@ -527,6 +549,9 @@ ul, ol { list-style: none; }
   color: var(--text-mut);
 }
 .foldertabs__tab--main { background: var(--card); color: var(--text-2); position: relative; z-index: 2; }
+.foldertabs__num { color: var(--blue); font-weight: 700; margin-inline-end: 0.5rem; opacity: 0.85; }
+.section[data-accent="sand"]  .foldertabs__num { color: var(--sand); }
+.section[data-accent="slate"] .foldertabs__num { color: var(--slate); }
 .foldertabs__tab--ghost  { width: 66px; height: 26px; opacity: 0.6; }
 .foldertabs__tab--ghost2 { width: 40px; height: 20px; opacity: 0.35; }
 
@@ -676,10 +701,13 @@ ul, ol { list-style: none; }
   border-radius: 12px;
   background: var(--bg-soft);
   border: 1px solid var(--border);
+  border-inline-start: 3px solid var(--blue);
   font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-2);
+  font-weight: 700;
+  color: var(--text);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.tech-pill:hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); }
 
 
 /* ============================================================
@@ -769,6 +797,7 @@ ul, ol { list-style: none; }
 }
 
 .tl-card {
+  position: relative;
   background: var(--bg-soft);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -794,6 +823,47 @@ ul, ol { list-style: none; }
   font-family: var(--font-mono);
   font-size: 0.76rem;
   color: var(--text-mut);
+}
+/* Space Mono forces its metrics onto the Tajawal fallback and breaks
+   Arabic date spacing — Arabic dates read in the body font instead. */
+html[lang="ar"] .tl-card__date {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+}
+
+/* Organization logo chip pinned to the card head's far corner.
+   The timeline tree is forced LTR for geometry, so logical inset
+   properties resolve wrong here — the chip and the head padding are
+   positioned PHYSICALLY per language instead: away from where the
+   text starts (right in English, left in Arabic). */
+.tl-org-logo {
+  pointer-events: none;
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  height: 34px;
+  padding: 4px 8px;
+  background: var(--plate);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+}
+.tl-org-logo img {
+  height: 24px;
+  width: auto;
+  max-width: 96px;
+  object-fit: contain;
+}
+.tl-card--haslogo .tl-card__head { padding-right: 8.5rem; }
+[dir="rtl"] .tl-org-logo { right: auto; left: 1.2rem; }
+[dir="rtl"] .tl-card--haslogo .tl-card__head { padding-right: 1.2rem; padding-left: 8.5rem; }
+@media (max-width: 640px) {
+  .tl-org-logo { height: 28px; top: 0.9rem; }
+  .tl-org-logo img { height: 20px; max-width: 72px; }
+  .tl-card--haslogo .tl-card__head { padding-right: 6.5rem; }
+  [dir="rtl"] .tl-card--haslogo .tl-card__head { padding-right: 1.2rem; padding-left: 6.5rem; }
 }
 .tl-card__tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.45rem; }
 
@@ -1111,12 +1181,21 @@ ul, ol { list-style: none; }
 /* ============================================================
    12. ANIMATIONS & REDUCED MOTION
    ============================================================ */
-.reveal {
+/* Content is visible by default. The hidden pre-reveal state only
+   applies once JS adds .js-anim to <html> (main.js, skipped under
+   reduced motion), so no-JS visitors, printing, and automated
+   previews always get the full page. */
+.js-anim .reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
-.reveal.is-visible { opacity: 1; transform: none; }
+.js-anim .reveal.is-visible { opacity: 1; transform: none; }
+
+@media print {
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .scroll-progress, .timeline__progress, .hero__scrollcue, .proj-cover { display: none !important; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

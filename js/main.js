@@ -10,6 +10,14 @@
    4. i18n plumbing · theme · nav · reveals · typing · interactions
    ============================================================ */
 
+/* Animation-capable flag: the pre-reveal hidden state in CSS only
+   applies under html.js-anim, so content stays visible for no-JS
+   visitors, printing, and reduced-motion users. Runs before first
+   paint since this script is parser-blocking at the end of <body>. */
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.documentElement.classList.add("js-anim");
+}
+
 /* ============================================================
    1. EXPERIENCE — edit here to add roles.
    accent : "blue" | "sand" | "slate"  (dot, border, hover)
@@ -71,7 +79,7 @@ const EXPERIENCE = [
     orgUrl: "",
     date: "Jan 2021 – Oct 2021",
     sortDate: "2021-01",
-    location: "Madinah",
+    location: "",
     accent: "blue",
     tags: ["Volunteering", "Content Production"],
     desc: "Produced 19 episodes on career guidance: hired and directed a content writer, a researcher, and a videographer, and delivered a professional counselling program.",
@@ -90,6 +98,18 @@ const EXPERIENCE = [
     skills: ["Training & Development", "Skill-Gap Analysis", "Recruitment"],
   },
 ];
+
+/* ============================================================
+   ORG_LOGOS — real organization logos shown as a chip on the
+   timeline card, keyed by the EXPERIENCE entry's exact `org` string.
+   Only verified marks are listed (Barez: own brand assets; Islamic
+   University: official iu.edu.sa lockup, saved locally). An org with
+   no entry renders without a chip — never a placeholder.
+   ============================================================ */
+const ORG_LOGOS = {
+  "Barez Company": { file: "barez-dark.png" },
+  "Research and Consulting Studies Institute, Islamic University": { file: "iu-logo.svg" },
+};
 
 /* ============================================================
    2. PROJECTS — rendered into the two showcase grids.
@@ -289,18 +309,24 @@ function renderTimeline() {
     const desc = ar.desc || item.desc;
     const tags = ar.tags || item.tags;
     const skills = ar.skills || item.skills;
+    const location = ar.location || item.location;
     const orgHtml = item.orgUrl
       ? `<a href="${esc(item.orgUrl)}" target="_blank" rel="noopener">${esc(org)}</a>`
       : esc(org);
+    const logo = ORG_LOGOS[item.org];
+    const logoHtml = logo
+      ? `<span class="tl-org-logo" aria-hidden="true"><img src="assets/icons/organizations/${esc(logo.file)}" alt="" loading="lazy"></span>`
+      : "";
 
     return `
     <li class="tl-item tl-item--${item.accent}">
       <div class="tl-dot" aria-hidden="true"></div>
-      <div class="tl-card">
+      <div class="tl-card${logo ? " tl-card--haslogo" : ""}">
+        ${logoHtml}
         <button class="tl-card__head" aria-expanded="false">
           <span class="tl-card__role">${esc(role)}</span>
           <span class="tl-card__org">${orgHtml}</span>
-          <span class="tl-card__date">${esc(date)}</span>
+          <span class="tl-card__date">${esc(date)}${location ? ` · ${esc(location)}` : ""}</span>
           <span class="tl-card__tags">${tags.map((tg) =>
             `<span class="pill pill--${item.accent}">${esc(tg)}</span>`).join("")}</span>
         </button>
@@ -563,6 +589,7 @@ function typeHeroCode() {
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const progressBar = document.getElementById("scrollProgress");
     const ghost = document.getElementById("heroGhost");
+    const cue = document.getElementById("scrollCue");
     const tlProgress = document.getElementById("timelineProgress");
     const timelineEl = document.getElementById("timeline");
     let ticking = false;
@@ -579,6 +606,7 @@ function typeHeroCode() {
       if (y < vh * 1.5) {
         ghost.style.transform = `translateY(${y * -0.22}px)`;
         ghost.style.opacity = String(Math.max(0, 0.55 - (y / vh) * 0.45));
+        cue.style.opacity = String(Math.max(0, 1 - (y / vh) * 3));
       }
 
       // Timeline spine fills as the viewport moves through the section
