@@ -841,29 +841,31 @@ html[lang="ar"] .tl-card__date {
   position: absolute;
   top: 1rem;
   right: 1.2rem;
-  height: 34px;
-  padding: 4px 8px;
+  height: 56px;
+  padding: 8px 12px;
   background: var(--plate);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   display: grid;
   place-items: center;
   box-sizing: border-box;
 }
 .tl-org-logo img {
-  height: 24px;
+  height: 40px;
   width: auto;
-  max-width: 96px;
+  max-width: 150px;
   object-fit: contain;
 }
-.tl-card--haslogo .tl-card__head { padding-right: 8.5rem; }
+/* For marks drawn in white — the plate goes dark in both themes */
+.tl-org-logo--dark { background: #101423; border-color: #2A3355; }
+.tl-card--haslogo .tl-card__head { padding-right: 13rem; }
 [dir="rtl"] .tl-org-logo { right: auto; left: 1.2rem; }
-[dir="rtl"] .tl-card--haslogo .tl-card__head { padding-right: 1.2rem; padding-left: 8.5rem; }
+[dir="rtl"] .tl-card--haslogo .tl-card__head { padding-right: 1.2rem; padding-left: 13rem; }
 @media (max-width: 640px) {
-  .tl-org-logo { height: 28px; top: 0.9rem; }
-  .tl-org-logo img { height: 20px; max-width: 72px; }
-  .tl-card--haslogo .tl-card__head { padding-right: 6.5rem; }
-  [dir="rtl"] .tl-card--haslogo .tl-card__head { padding-right: 1.2rem; padding-left: 6.5rem; }
+  .tl-org-logo { height: 42px; top: 0.9rem; padding: 6px 9px; }
+  .tl-org-logo img { height: 30px; max-width: 104px; }
+  .tl-card--haslogo .tl-card__head { padding-right: 9rem; }
+  [dir="rtl"] .tl-card--haslogo .tl-card__head { padding-right: 1.2rem; padding-left: 9rem; }
 }
 .tl-card__tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.45rem; }
 
